@@ -7,16 +7,23 @@ import categoryRoutes from './routes/category.routes.js';
 
 const app = express();
 
-app.use(cors());
+app.use(cors({
+  origin: 'http://localhost:3001',
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true, // remove if you don't use cookies
+}));
+
 app.use(express.json());
-app.options('*', cors());
 
 app.use('/api/auth', authRoutes);
 app.use('/api/projects', projectRoutes);
 app.use('/api/categories', categoryRoutes);
 
 app.get('/', (req, res) => {
-  res.status(200).json({ message: 'API is running successfully 🚀' });
+  res.status(200).json({
+    message: 'API is running successfully 🚀'
+  });
 });
 
 export default app;
