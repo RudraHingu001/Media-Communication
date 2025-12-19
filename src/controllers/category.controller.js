@@ -1,6 +1,8 @@
 import Category from '../models/Category.js';
-
+import connectDB from '../config/db.js';  
 // Create Category
+
+await connectDB();
 export const createCategory = async (req, res) => {
   const { name } = req.body;
 

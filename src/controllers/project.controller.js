@@ -1,6 +1,8 @@
 import Project from '../models/Project.js';
+import connectDB from '../config/db.js';  
 
 // CREATE
+await connectDB();
 export const createProject = async (req, res) => {
   const project = await Project.create(req.body);
   res.status(201).json({ success: true, data: project });
