@@ -2,8 +2,8 @@ import Category from '../models/Category.js';
 import connectDB from '../config/db.js';  
 // Create Category
 
-await connectDB();
 export const createCategory = async (req, res) => {
+   await connectDB();
   const { name } = req.body;
 
   const exists = await Category.findOne({ name });
@@ -17,12 +17,14 @@ export const createCategory = async (req, res) => {
 
 // Get All Categories
 export const getCategories = async (req, res) => {
+   await connectDB();
   const categories = await Category.find({ status: 'active' });
   res.json({ success: true, data: categories });
 };
 
 // Update Category
 export const updateCategory = async (req, res) => {
+   await connectDB();
   console.log('Update ID:', req.params.id);
   console.log('Request Body:', req.body);
   const category = await Category.findByIdAndUpdate(
@@ -40,6 +42,7 @@ export const updateCategory = async (req, res) => {
 
 // Delete Category
 export const deleteCategory = async (req, res) => {
+   await connectDB();
   const category = await Category.findByIdAndDelete(req.params.id);
 
   if (!category) {

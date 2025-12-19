@@ -2,14 +2,15 @@ import Project from '../models/Project.js';
 import connectDB from '../config/db.js';  
 
 // CREATE
-await connectDB();
 export const createProject = async (req, res) => {
+   await connectDB();
   const project = await Project.create(req.body);
   res.status(201).json({ success: true, data: project });
 };
 
 // READ (Public)
 export const getAllProjects = async (req, res) => {
+   await connectDB();
   const projects = await Project.find()
     .populate('category', 'name')
     .sort({ createdAt: -1 });
@@ -19,6 +20,7 @@ export const getAllProjects = async (req, res) => {
 
 // READ BY CATEGORY
 export const getProjectsByCategory = async (req, res) => {
+   await connectDB();
   const projects = await Project.find({ category: req.params.categoryId })
     .populate('category', 'name');
 
@@ -27,6 +29,7 @@ export const getProjectsByCategory = async (req, res) => {
 
 // READ ONE
 export const getProjectById = async (req, res) => {
+   await connectDB();
   const project = await Project.findById(req.params.id)
     .populate('category', 'name');
 
@@ -39,6 +42,7 @@ export const getProjectById = async (req, res) => {
 
 // UPDATE
 export const updateProject = async (req, res) => {
+   await connectDB();
   const project = await Project.findByIdAndUpdate(
     req.params.id,
     req.body,
@@ -54,6 +58,7 @@ export const updateProject = async (req, res) => {
 
 // DELETE
 export const deleteProject = async (req, res) => {
+   await connectDB();
   const project = await Project.findByIdAndDelete(req.params.id);
 
   if (!project) {
