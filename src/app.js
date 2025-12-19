@@ -20,4 +20,14 @@ app.get('/', (req, res) => {
     });
 });
 
+
+app.get('/db-test', async (req, res) => {
+  try {
+    await connectDB();
+    res.json({ success: true, message: 'MongoDB connected' });
+  } catch (err) {
+    res.status(500).json({ success: false, error: err.message });
+  }
+});
+
 export default app;
