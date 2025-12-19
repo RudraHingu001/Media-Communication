@@ -11,10 +11,10 @@ const connectDB = async () => {
 
   if (!cached.promise) {
     cached.promise = mongoose.connect(process.env.MONGO_URI, {
-      dbName: 'test',               
+      dbName: 'test', // 👈 use real DB name
       bufferCommands: false,
       serverSelectionTimeoutMS: 5000,
-    }).then(mongoose => mongoose);
+    });
   }
 
   cached.conn = await cached.promise;

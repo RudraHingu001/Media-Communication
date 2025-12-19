@@ -1,9 +1,13 @@
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
+import connectDB from '../config/db.js';  
 import User from '../models/User.js';
 
 export const adminLogin = async (req, res) => {
   try {
+
+    await connectDB();
+    
     const { email, password } = req.body;
 
     const admin = await User.findOne({ email, role: 'admin' });
