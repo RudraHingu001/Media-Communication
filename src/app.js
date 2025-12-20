@@ -8,7 +8,10 @@ import categoryRoutes from './routes/category.routes.js';
 const app = express();
 
 app.use(cors({
-  origin: 'http://localhost:3001',
+  origin: [
+    'http://localhost:3001',
+    'https://studio-51-lb9r.vercel.app'
+  ],
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true, // remove if you don't use cookies
