@@ -37,8 +37,8 @@ export const createInquiry = async (req, res) => {
   } catch (error) {
     console.error(error);
     res.status(500).json({
-      success: false,
-      message: 'Failed to submit inquiry',
+        success: false,
+        message: error.message || 'Failed to submit inquiry',
     });
   }
 };
