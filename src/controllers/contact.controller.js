@@ -1,7 +1,9 @@
 import Contact from '../models/Contact.js';
 import transporter from '../config/mailer.js';
+import connectDB from '../config/db.js';  
 
 export const createInquiry = async (req, res) => {
+    await connectDB();
   try {
     const { name, email, phone, enquiryFor, message } = req.body;
 
@@ -38,7 +40,7 @@ export const createInquiry = async (req, res) => {
     console.error(error);
     res.status(500).json({
         success: false,
-        message: error.message || 'Failed to submit inquiry',
+        message: 'Failed to submit inquiry',
     });
   }
 };
