@@ -11,7 +11,8 @@ const app = express();
 app.use(cors({
   origin: [
     'http://localhost:3001',
-    'https://studio-51-lb9r.vercel.app'
+    'https://studio-51-lb9r.vercel.app',
+    'https://studio-51-dhmq.vercel.app'
   ],
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
