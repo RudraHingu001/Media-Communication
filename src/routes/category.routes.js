@@ -11,7 +11,7 @@ import { protectAdmin } from '../middleware/auth.middleware.js';
 const router = express.Router();
 
 router.post('/', protectAdmin, createCategory);
-router.get('/', protectAdmin, getCategories);
+router.get('/', getCategories);
 router.put('/:id', protectAdmin, updateCategory);
 router.delete('/:id', protectAdmin, deleteCategory);
 
