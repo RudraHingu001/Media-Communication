@@ -4,6 +4,7 @@ import Reel from '../models/Reel.js';
  * CREATE (Admin)
  */
 export const createReel = async (req, res) => {
+  await connectDB();
   try {
     const reel = await Reel.create(req.body);
     res.status(201).json({ success: true, data: reel });
@@ -19,6 +20,7 @@ export const createReel = async (req, res) => {
  * GET ALL (Public)
  */
 export const getAllReels = async (req, res) => {
+  await connectDB();
   try {
     const reels = await Reel.find({ status: 'active' })
       .sort({ createdAt: -1 });
@@ -36,6 +38,7 @@ export const getAllReels = async (req, res) => {
  * GET BY ID (Public)
  */
 export const getReelById = async (req, res) => {
+  await connectDB();
   try {
     const reel = await Reel.findById(req.params.id);
 
@@ -59,6 +62,7 @@ export const getReelById = async (req, res) => {
  * UPDATE (Admin)
  */
 export const updateReel = async (req, res) => {
+  await connectDB();
   try {
     const reel = await Reel.findByIdAndUpdate(
       req.params.id,
@@ -86,6 +90,7 @@ export const updateReel = async (req, res) => {
  * DELETE (Admin)
  */
 export const deleteReel = async (req, res) => {
+  await connectDB();
   try {
     const reel = await Reel.findByIdAndDelete(req.params.id);
 
