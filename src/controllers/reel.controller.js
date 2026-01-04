@@ -1,5 +1,5 @@
 import Reel from '../models/Reel.js';
-
+import connectDB from '../config/db.js'; 
 /**
  * CREATE (Admin)
  */
